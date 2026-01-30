@@ -1,0 +1,2088 @@
+WARNING:linkml.generators.owlgen:Ambiguous attribute: hs_code_value https://ce-rise-models.codeberg.page/material-profile/hs_code_value
+WARNING:linkml.generators.owlgen:Ambiguous attribute: hs_code_value https://ce-rise-models.codeberg.page/material-profile/hs_code_value
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mat_prof: <https://ce-rise-models.codeberg.page/material-profile/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://ce-rise-models.codeberg.page/material-profile/.owl.ttl> a owl:Ontology ;
+    rdfs:label "material-profile" ;
+    dcterms:license "CC BY-NC 4.0" ;
+    dcterms:title "CE-RISE Material Profile Data Model" ;
+    pav:version "0.0.1" ;
+    skos:definition """Core data model defining the mandatory Material Profile for Digital Material Passports, including material identity, chemical composition, supplier details, and technical specifications.
+""" .
+
+mat_prof:AEOStatus a owl:Class ;
+    rdfs:label "AEOStatus" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:aeo_validity_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:aeo_validity_date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:aeo_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:aeo_validity_date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:aeo_certificate_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:aeo_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:aeo_certificate_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:aeo_certificate_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:aeo_type_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Authorized Economic Operator certification for trusted trader status" ;
+    skos:exactMatch mat_prof:aeoStatus ;
+    skos:inScheme mat_prof: ;
+    skos:note "AEOC: Customs simplifications (reduced controls, priority treatment)",
+        "AEOF: Full AEO status combining both customs and security benefits",
+        "AEOS: Security and safety benefits (reduced security checks)",
+        "Reused from product model structure" ;
+    mat_prof:sql_identifier "mat_import_aeo" .
+
+mat_prof:BatchTraceability a owl:Class ;
+    rdfs:label "BatchTraceability" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:processing_date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:batch_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:batch_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:processing_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:batch_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:processing_date_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "Batch/lot number and processing date for material traceability" ;
+    skos:exactMatch mat_prof:batchTraceability ;
+    skos:inScheme mat_prof: ;
+    skos:note "Batch number required for composite unique identifier",
+        "Processing date: extraction, synthesis, or import date" ;
+    mat_prof:sql_identifier "mat_identity_batch" .
+
+mat_prof:BorderCrossing a owl:Class ;
+    rdfs:label "BorderCrossing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:exit_port_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:customs_office_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:entry_port_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:exit_port_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:customs_office_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:exit_port_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:border_crossing_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:border_crossing_date_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:entry_port_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:customs_office_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:entry_port_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:border_crossing_date_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Border crossing and customs clearance location information" ;
+    skos:exactMatch mat_prof:borderCrossing ;
+    skos:inScheme mat_prof: ;
+    skos:note "Customs office codes follow ISO format for responsible office identification",
+        "Reused from product model structure",
+        "UN/LOCODE standard port and airport codes for precise location tracking" ;
+    mat_prof:sql_identifier "mat_import_border" .
+
+mat_prof:ChemicalIdentifier a owl:Class ;
+    rdfs:label "ChemicalIdentifier" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:inchi_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:smiles_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:inchikey_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:inchi_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:smiles_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:inchikey_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:cas_registry_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:inchi_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:cas_registry_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:inchikey_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:smiles_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:cas_registry_number_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "Chemical identifiers: CAS, InChI, InChIKey, SMILES" ;
+    skos:exactMatch mat_prof:chemicalIdentifier ;
+    skos:inScheme mat_prof: ;
+    skos:note "At least one chemical identifier should be provided if material is a chemical substance",
+        "Used for pure chemical substances and compounds" ;
+    mat_prof:sql_identifier "mat_identity_chemical" .
+
+mat_prof:ChemicalProperties a owl:Class ;
+    rdfs:label "ChemicalProperties" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:solubility_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:corrosion_resistance_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:flammability_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:reactivity_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:corrosion_resistance_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:reactivity_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:solubility_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:solubility_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:flammability_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:reactivity_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:flammability_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:corrosion_resistance_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Chemical properties: reactivity, corrosion resistance, solubility, flammability" ;
+    skos:exactMatch mat_prof:chemicalProperties ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs_chemical" .
+
+mat_prof:CommodityCode a owl:Class ;
+    rdfs:label "CommodityCode" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:hs_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:unspsc_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:unspsc_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:hs_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:unspsc_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:hs_code_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "UNSPSC or HS code for commodity materials" ;
+    skos:exactMatch mat_prof:commodityCode ;
+    skos:inScheme mat_prof: ;
+    skos:note "HS: 6-digit Harmonized System code for international trade",
+        "UNSPSC: 8-digit United Nations Standard Products and Services Code",
+        "Used for commodity materials: agricultural, mineral, energy" ;
+    mat_prof:sql_identifier "mat_identity_commodity" .
+
+mat_prof:Composition a owl:Class ;
+    rdfs:label "Composition" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:trace_element_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:trace_element_max_concentration_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:primary_component_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:additive_concentration_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:purity_percentage_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:additive_name_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:recycled_source_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty mat_prof:purity_percentage_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:trace_element_max_concentration_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:recycled_content_percentage_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:composition_test_date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:additive_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:trace_element_name_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:composition_test_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:recycled_source_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:additive_cas_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:primary_component_cas_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:composition_certification_authority_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:purity_percentage_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:composition_test_method_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:primary_component_cas_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:additive_function_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:composition_certification_authority_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:primary_component_name_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:recycled_cycle_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:recycled_source_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:composition_certification_authority_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:composition_test_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:trace_element_max_concentration_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:primary_component_name_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:recycled_cycle_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:additive_cas_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:additive_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:recycled_content_percentage_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:additive_cas_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:composition_test_method_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:additive_function_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:composition_test_method_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:additive_concentration_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:recycled_cycle_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:additive_function_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:additive_concentration_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:primary_component_cas_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty mat_prof:recycled_content_percentage_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:trace_element_name_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Material composition with purity, additives, and trace elements" ;
+    skos:exactMatch mat_prof:composition ;
+    skos:inScheme mat_prof: ;
+    skos:note "Additives with function and concentration",
+        "Primary component with purity percentage",
+        "Recycled content tracking",
+        "Trace elements with maximum allowable concentrations" ;
+    mat_prof:sql_identifier "mat_specs_composition" .
+
+mat_prof:CustomsDocumentation a owl:Class ;
+    rdfs:label "CustomsDocumentation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:customs_document_urls_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:customs_issuing_authority_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:customs_document_id_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:customs_issuing_authority_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:customs_document_urls_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:customs_document_type_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:customs_document_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:customs_document_type_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:customs_document_id_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:customs_document_urls_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:customs_document_id_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:customs_issuing_authority_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Customs documents linked to import operations for verification and traceability" ;
+    skos:exactMatch mat_prof:customsDocumentation ;
+    skos:inScheme mat_prof: ;
+    skos:note "Document types include MRN, declaration IDs, customs certificates",
+        "Reused from product model structure",
+        "URLs enable access to digital document copies" ;
+    mat_prof:sql_identifier "mat_import_customs_docs" .
+
+mat_prof:ElectricalProperties a owl:Class ;
+    rdfs:label "ElectricalProperties" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:resistivity_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:resistivity_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:electrical_conductivity_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:electrical_conductivity_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:resistivity_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:electrical_conductivity_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Electrical properties: conductivity, resistivity" ;
+    skos:exactMatch mat_prof:electricalProperties ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs_electrical" .
+
+mat_prof:EoriNumber a owl:Class ;
+    rdfs:label "EoriNumber" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:eori_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:eori_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:eori_number_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "EORI number - European Union registration and identification number for import/export businesses" ;
+    skos:exactMatch mat_prof:eoriNumber ;
+    skos:inScheme mat_prof: ;
+    skos:note "2-letter country code followed by up to 15 alphanumeric characters",
+        "Example: GB123456789000, DE987654321",
+        "Reused from product model structure" ;
+    mat_prof:sql_identifier "mat_import_eori" .
+
+mat_prof:Fingerprinting a owl:Class ;
+    rdfs:label "Fingerprinting" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:fingerprint_spectroscopy_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:fingerprint_method_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:fingerprint_method_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:fingerprint_isotope_ratios_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:fingerprint_spectroscopy_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:fingerprint_isotope_ratios_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:fingerprint_isotope_ratios_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:fingerprint_method_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:fingerprint_spectroscopy_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Fingerprinting methods: isotope ratios, spectroscopy signatures" ;
+    skos:exactMatch mat_prof:fingerprinting ;
+    skos:inScheme mat_prof: ;
+    skos:note "Analytical method identification",
+        "Isotope ratio measurements (δ13C, δ18O)",
+        "Spectroscopy signatures (XRF, NMR, Raman)",
+        "Trace element profiles" ;
+    mat_prof:sql_identifier "mat_specs_fingerprint" .
+
+mat_prof:ImportAuthorization a owl:Class ;
+    rdfs:label "ImportAuthorization" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:permit_validity_period_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:permit_issuing_authority_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:import_license_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:import_license_number_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:import_license_number_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:permit_type_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:permit_validity_period_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:permit_validity_period_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:permit_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:permit_issuing_authority_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:permit_issuing_authority_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:permit_type_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Import licenses and permits required for restricted materials" ;
+    skos:exactMatch mat_prof:importAuthorization ;
+    skos:inScheme mat_prof: ;
+    skos:note "Includes licenses for dual-use goods, chemicals, etc.",
+        "Required for materials subject to import restrictions or quotas",
+        "Reused from product model structure" ;
+    mat_prof:sql_identifier "mat_import_auth" .
+
+mat_prof:ImportExportOperation a owl:Class ;
+    rdfs:label "ImportExportOperation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:operation_value_amount_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:operation_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:operation_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:operation_quantities_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:incoterms_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:operation_date_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:operation_type_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:shipment_transaction_id_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:shipment_transaction_id_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:shipment_transaction_id_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:operation_value_amount_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:operation_value_amount_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:incoterms_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:operation_quantities_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:operation_type_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:operation_quantities_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:operation_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:incoterms_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Individual import or export operation providing activity history" ;
+    skos:exactMatch mat_prof:importExportOperation ;
+    skos:inScheme mat_prof: ;
+    skos:note "Includes commercial terms (Incoterms) and monetary values",
+        "Reused from product model structure",
+        "Tracks specific trade operations with dates and transaction details" ;
+    mat_prof:sql_identifier "mat_import_operation" .
+
+mat_prof:ImporterJurisdiction a owl:Class ;
+    rdfs:label "ImporterJurisdiction" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:jurisdiction_country_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:jurisdiction_country_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:jurisdiction_country_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Legal jurisdiction of importer's establishment" ;
+    skos:exactMatch mat_prof:importerJurisdiction ;
+    skos:inScheme mat_prof: ;
+    skos:note "EU Publications Office 3-character country codes",
+        "Required for cross-border trade compliance",
+        "Reused from product model structure" ;
+    mat_prof:sql_identifier "mat_import_jurisdiction" .
+
+mat_prof:MaterialGrade a owl:Class ;
+    rdfs:label "MaterialGrade" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:material_grade_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:material_grade_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:material_grade_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "Material grade designation" ;
+    skos:exactMatch mat_prof:materialGrade ;
+    skos:inScheme mat_prof: ;
+    skos:note "Grade designation: pharmaceutical, food, technical, commercial",
+        "Quality classification" ;
+    mat_prof:sql_identifier "mat_identity_grade" .
+
+mat_prof:MaterialName a owl:Class ;
+    rdfs:label "MaterialName" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:chemical_name_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:molecular_formula_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:molecular_formula_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:chemical_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:molecular_formula_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:chemical_name_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "Chemical or material name and molecular formula" ;
+    skos:exactMatch mat_prof:materialName ;
+    skos:inScheme mat_prof: ;
+    skos:note "IUPAC and common names",
+        "Molecular formula for chemical substances" ;
+    mat_prof:sql_identifier "mat_identity_name" .
+
+mat_prof:MaterialOrigin a owl:Class ;
+    rdfs:label "MaterialOrigin" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:material_origin_location_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:material_origin_location_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:extraction_harvest_date_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:material_source_type_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:extraction_harvest_date_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:material_source_type_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:material_origin_location_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:material_source_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:extraction_harvest_date_value ],
+        mat_prof:SupplierInformation ;
+    skos:definition "Material source location and extraction/harvest information" ;
+    skos:exactMatch mat_prof:materialOrigin ;
+    skos:inScheme mat_prof: ;
+    skos:note "Extraction or harvest date tracking",
+        "Geographic location of material source (mine, forest, recycling facility, synthesis plant)",
+        "Source type classification: PRIMARY_EXTRACTION, RECYCLED, SYNTHESIZED, NATURAL_HARVEST" ;
+    mat_prof:sql_identifier "mat_supplier_origin" .
+
+mat_prof:MechanicalProperties a owl:Class ;
+    rdfs:label "MechanicalProperties" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:young_modulus_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:hardness_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:tensile_strength_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:hardness_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:tensile_strength_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:young_modulus_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:young_modulus_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:tensile_strength_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:hardness_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Mechanical properties: tensile strength, hardness, Young's modulus" ;
+    skos:exactMatch mat_prof:mechanicalProperties ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs_mechanical" .
+
+mat_prof:OpticalProperties a owl:Class ;
+    rdfs:label "OpticalProperties" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:refractive_index_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:refractive_index_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:refractive_index_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Optical properties: refractive index" ;
+    skos:exactMatch mat_prof:opticalProperties ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs_optical" .
+
+mat_prof:OrganizationEntity a owl:Class ;
+    rdfs:label "OrganizationEntity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:country_of_incorporation_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:lei_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:organization_gln_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:vat_number_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:lei_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:lei_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:country_of_incorporation_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:organization_gln_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:company_registration_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:company_registration_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:organization_gln_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:legal_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:company_registration_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:vat_number_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:legal_name_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:legal_name_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:vat_number_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:country_of_incorporation_value ],
+        mat_prof:SupplierInformation ;
+    skos:definition "Supplier legal entity information with GS1 GLN as preferred identifier" ;
+    skos:exactMatch mat_prof:organizationEntity ;
+    skos:inScheme mat_prof: ;
+    skos:note "Addresses separation of legal entity from physical facilities",
+        "Fallback support for LEI, VAT, and local registration numbers",
+        "Hierarchical organization identification supporting GS1 GLN as primary standard",
+        "Reused from product model structure" ;
+    mat_prof:sql_identifier "mat_supplier_org_entity" .
+
+mat_prof:PhysicalProperties a owl:Class ;
+    rdfs:label "PhysicalProperties" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:particle_size_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:density_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:state_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:state_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:state_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:density_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:color_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:particle_size_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:density_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:color_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:color_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:particle_size_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Physical properties: density, color, state, particle size" ;
+    skos:exactMatch mat_prof:physicalProperties ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs_physical" .
+
+mat_prof:ProcessingFacility a owl:Class ;
+    rdfs:label "ProcessingFacility" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:osid_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:parent_gln_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:osid_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:facility_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:facility_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:osid_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:facility_name_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:facility_gln_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:facility_gln_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:facility_gln_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:parent_gln_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:coordinates_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:coordinates_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:parent_gln_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:facility_type_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:coordinates_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:facility_name_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:facility_type_value ],
+        mat_prof:SupplierInformation ;
+    skos:definition "Physical processing facility with GS1 GLN and hierarchical linking" ;
+    skos:exactMatch mat_prof:processingFacility ;
+    skos:inScheme mat_prof: ;
+    skos:note "Facility types: EXTRACTION, PROCESSING, RECYCLING, IMPORT",
+        "GPS coordinates for precise location tracking",
+        "GS1 GLN preferred with parent organization linking",
+        "Integration with Open Supply Hub for facility verification",
+        "Physical facility identification separate from legal entity",
+        "Reused from product ManufacturingFacility structure" ;
+    mat_prof:sql_identifier "mat_supplier_facility" .
+
+mat_prof:SpecificationCode a owl:Class ;
+    rdfs:label "SpecificationCode" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:specification_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:specification_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:specification_code_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "ISO/EN/ASTM specification code for technical materials" ;
+    skos:exactMatch mat_prof:specificationCode ;
+    skos:inScheme mat_prof: ;
+    skos:note "Examples: ISO 21305 for plastics, ISO 3691 for aluminum alloys",
+        "Used for technical materials: alloys, polymers, ceramics" ;
+    mat_prof:sql_identifier "mat_identity_specification" .
+
+mat_prof:SupplierMaterialCode a owl:Class ;
+    rdfs:label "SupplierMaterialCode" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:supplier_material_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:supplier_material_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:supplier_material_code_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "Supplier-specific material code or SKU" ;
+    skos:exactMatch mat_prof:supplierMaterialCode ;
+    skos:inScheme mat_prof: ;
+    skos:note "Used for non-standardized materials",
+        "Vendor-specific identification" ;
+    mat_prof:sql_identifier "mat_identity_supplier_code" .
+
+mat_prof:TariffClassification a owl:Class ;
+    rdfs:label "TariffClassification" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:tariff_description_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:taric_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:tariff_description_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:cn_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:hs_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:taric_code_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty mat_prof:duty_rate_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:hs_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:taric_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:duty_rate_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:duty_rate_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:tariff_description_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:hs_code_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:cn_code_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:cn_code_value ],
+        mat_prof:InformationRelatedToImportExport ;
+    skos:definition "Customs tariff classification codes for proper duty calculation and trade statistics" ;
+    skos:exactMatch mat_prof:tariffClassification ;
+    skos:inScheme mat_prof: ;
+    skos:note "CN codes: extend HS with 2 additional digits for EU-specific classification",
+        "HS codes: internationally standardized 6-digit classification system",
+        "Reused from product model structure",
+        "TARIC codes: add 4 more digits for detailed EU tariff measures" ;
+    mat_prof:sql_identifier "mat_import_tariff" .
+
+mat_prof:TestConditions a owl:Class ;
+    rdfs:label "TestConditions" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:test_reference_temperature_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:test_atmospheric_pressure_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:test_atmospheric_pressure_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:test_reference_temperature_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:test_atmospheric_pressure_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:test_standard_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:test_standard_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:test_reference_humidity_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:test_reference_temperature_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:test_standard_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:test_reference_humidity_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:test_reference_humidity_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Reference test conditions for all property measurements" ;
+    skos:exactMatch mat_prof:testConditions ;
+    skos:inScheme mat_prof: ;
+    skos:note "Critical for all material property measurements",
+        "Reference temperature, humidity, atmospheric pressure",
+        "Testing standard applied (ISO, ASTM, EN)" ;
+    mat_prof:sql_identifier "mat_specs_test_conditions" .
+
+mat_prof:ThermalProperties a owl:Class ;
+    rdfs:label "ThermalProperties" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:expansion_coefficient_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:expansion_coefficient_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:expansion_coefficient_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:thermal_conductivity_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:melting_point_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mat_prof:melting_point_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:thermal_conductivity_value ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:melting_point_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:thermal_conductivity_value ],
+        mat_prof:MaterialSpecifications ;
+    skos:definition "Thermal properties: melting point, thermal conductivity, expansion coefficient" ;
+    skos:exactMatch mat_prof:thermalProperties ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs_thermal" .
+
+mat_prof:UniqueMaterialIdentifier a owl:Class ;
+    rdfs:label "UniqueMaterialIdentifier" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mat_prof:unique_material_identifier_value ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mat_prof:unique_material_identifier_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mat_prof:unique_material_identifier_value ],
+        mat_prof:MaterialIdentity ;
+    skos:definition "Composite unique identifier enabling web link to material passport" ;
+    skos:exactMatch mat_prof:uniqueMaterialIdentifier ;
+    skos:inScheme mat_prof: ;
+    skos:note "Composite key allows same material referenced through different identifier systems",
+        "Enables batch-level traceability",
+        "Examples: CAS:7732-18-5:BATCH-2024-001, SPEC:ISO-21305:BATCH-2024-001",
+        "Format: [IDENTIFIER_TYPE]:[IDENTIFIER_VALUE]:[BATCH_NUMBER]" ;
+    mat_prof:sql_identifier "mat_identity_unique_id" .
+
+mat_prof:sql_identifier a owl:DatatypeProperty ;
+    rdfs:label "sql_identifier" ;
+    rdfs:range xsd:string ;
+    skos:definition "Machine-friendly field name for databases" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:sqlIdentifier" .
+
+mat_prof:SupplierInformation a owl:Class ;
+    rdfs:label "SupplierInformation" ;
+    rdfs:subClassOf mat_prof:MaterialIdentification ;
+    skos:definition "Information about the material supplier and processing facility" ;
+    skos:exactMatch mat_prof:supplierInformation ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_supplier" .
+
+mat_prof:additive_cas_value a owl:DatatypeProperty ;
+    rdfs:label "additive_cas_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{2,7}-\\d{2}-\\d$" ] ) ] ) ] ;
+    skos:definition "CAS number of additive" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cas:registryNumber" ;
+    mat_prof:sql_identifier "mat_specs_additive_cas" .
+
+mat_prof:additive_concentration_value a owl:DatatypeProperty ;
+    rdfs:label "additive_concentration_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Concentration of additive (e.g., 0.2%, 10 ppm)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_additive_concentration" .
+
+mat_prof:additive_function_value a owl:DatatypeProperty ;
+    rdfs:label "additive_function_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Function of additive (e.g., hardener, stabilizer, lubricant)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:additiveFunctionValue" ;
+    mat_prof:sql_identifier "mat_specs_additive_function" .
+
+mat_prof:additive_name_value a owl:DatatypeProperty ;
+    rdfs:label "additive_name_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Name of additive" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "chebi:24431" ;
+    mat_prof:sql_identifier "mat_specs_additive_name" .
+
+mat_prof:aeo_certificate_number_value a owl:DatatypeProperty ;
+    rdfs:label "aeo_certificate_number_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Authorized Economic Operator certificate number" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:identifier" ;
+    mat_prof:sql_identifier "mat_import_aeo_cert_number" .
+
+mat_prof:aeo_type_value a owl:DatatypeProperty ;
+    rdfs:label "aeo_type_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(AEOC|AEOS|AEOF)$" ] ) ] ) ] ;
+    skos:definition "Type of AEO certification (AEOC, AEOS, AEOF)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:aeoTypeValue" ;
+    mat_prof:sql_identifier "mat_import_aeo_type" .
+
+mat_prof:aeo_validity_date_value a owl:DatatypeProperty ;
+    rdfs:label "aeo_validity_date_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}$" ] ) ] ) ] ;
+    skos:definition "AEO certificate validity end date in ISO 8601 format" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:validThrough" ;
+    mat_prof:sql_identifier "mat_import_aeo_validity" .
+
+mat_prof:batch_number_value a owl:DatatypeProperty ;
+    rdfs:label "batch_number_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Batch or lot number from material supplier (required for composite unique identifier)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:batchNumberValue" ;
+    mat_prof:sql_identifier "mat_identity_batch_number" .
+
+mat_prof:border_crossing_date_value a owl:DatatypeProperty ;
+    rdfs:label "border_crossing_date_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(Z|[+-]\\d{2}:\\d{2})$" ] ) ] ) ] ;
+    skos:definition "Actual border crossing timestamp in ISO 8601 format" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:dateCreated" ;
+    mat_prof:sql_identifier "mat_import_border_crossing_date" .
+
+mat_prof:cas_registry_number_value a owl:DatatypeProperty ;
+    rdfs:label "cas_registry_number_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{2,7}-\\d{2}-\\d$" ] ) ] ) ] ;
+    skos:definition "CAS Registry Number for pure chemical substances (format: XXXXX-XX-X)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cas:registryNumber" ;
+    mat_prof:sql_identifier "mat_identity_cas_registry" .
+
+mat_prof:chemical_name_value a owl:DatatypeProperty ;
+    rdfs:label "chemical_name_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Chemical or material name (IUPAC, common names)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "chebi:24431" ;
+    mat_prof:sql_identifier "mat_identity_chemical_name" .
+
+mat_prof:cn_code_value a owl:DatatypeProperty ;
+    rdfs:label "cn_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[0-9]{8}$" ] ) ] ) ] ;
+    skos:definition "8-digit Combined Nomenclature code used in EU customs" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:cnCodeValue" ;
+    mat_prof:sql_identifier "mat_import_cn_code" .
+
+mat_prof:color_value a owl:DatatypeProperty ;
+    rdfs:label "color_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Color description or hex code" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:color" ;
+    mat_prof:sql_identifier "mat_specs_color" .
+
+mat_prof:company_registration_value a owl:DatatypeProperty ;
+    rdfs:label "company_registration_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Local company registration number" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:identifier" ;
+    mat_prof:sql_identifier "mat_supplier_company_registration" .
+
+mat_prof:composition_certification_authority_value a owl:DatatypeProperty ;
+    rdfs:label "composition_certification_authority_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Certification authority for composition verification" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:issuedBy" ;
+    mat_prof:sql_identifier "mat_specs_cert_authority" .
+
+mat_prof:composition_test_date_value a owl:DatatypeProperty ;
+    rdfs:label "composition_test_date_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}$" ] ) ] ) ] ;
+    skos:definition "Date of composition analysis (ISO 8601)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:dateCreated" ;
+    mat_prof:sql_identifier "mat_specs_test_date" .
+
+mat_prof:composition_test_method_value a owl:DatatypeProperty ;
+    rdfs:label "composition_test_method_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Testing method used for composition analysis (e.g., ICP-MS, HPLC, XRF)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "chmo:0000228" ;
+    mat_prof:sql_identifier "mat_specs_test_method" .
+
+mat_prof:coordinates_value a owl:DatatypeProperty ;
+    rdfs:label "coordinates_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^-?[0-9]{1,2}\\.[0-9]+,-?[0-9]{1,3}\\.[0-9]+$" ] ) ] ) ] ;
+    skos:definition "GPS coordinates of the facility (latitude,longitude)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:geo" ;
+    mat_prof:sql_identifier "mat_supplier_coordinates" .
+
+mat_prof:corrosion_resistance_value a owl:DatatypeProperty ;
+    rdfs:label "corrosion_resistance_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Corrosion resistance description (specified environment)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:corrosionResistanceValue" ;
+    mat_prof:sql_identifier "mat_specs_corrosion_resistance" .
+
+mat_prof:country_of_incorporation_value a owl:DatatypeProperty ;
+    rdfs:label "country_of_incorporation_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{3}$" ] ) ] ) ] ;
+    skos:definition "Country of incorporation using EU Publications Office 3-character country codes" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "eu_country:countryOfIncorporation" ;
+    mat_prof:sql_identifier "mat_supplier_country_incorporation" .
+
+mat_prof:customs_document_id_value a owl:DatatypeProperty ;
+    rdfs:label "customs_document_id_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Unique identifier of the customs document" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:identifier" ;
+    mat_prof:sql_identifier "mat_import_customs_doc_id" .
+
+mat_prof:customs_document_type_value a owl:DatatypeProperty ;
+    rdfs:label "customs_document_type_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of customs document (e.g., MRN, declaration ID, customs certificate)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:customsDocumentTypeValue" ;
+    mat_prof:sql_identifier "mat_import_customs_doc_type" .
+
+mat_prof:customs_document_urls_value a owl:DatatypeProperty ;
+    rdfs:label "customs_document_urls_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^https://.*\\.(pdf|doc|docx|jpg|jpeg|png|gif|bmp|webp)(,\\s*https://.*\\.(pdf|doc|docx|jpg|jpeg|png|gif|bmp|webp))*$" ] ) ] ) ] ;
+    skos:definition "URLs or references to digital copies of customs documents (comma-separated)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:url" ;
+    mat_prof:sql_identifier "mat_import_customs_doc_urls" .
+
+mat_prof:customs_issuing_authority_value a owl:DatatypeProperty ;
+    rdfs:label "customs_issuing_authority_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Authority that issued the customs document" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:issuedBy" ;
+    mat_prof:sql_identifier "mat_import_customs_authority" .
+
+mat_prof:customs_office_code_value a owl:DatatypeProperty ;
+    rdfs:label "customs_office_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{2}[0-9]{6}$" ] ) ] ) ] ;
+    skos:definition "Responsible customs office code (e.g., DE005300 for Hamburg)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:customsOfficeCodeValue" ;
+    mat_prof:sql_identifier "mat_import_customs_office" .
+
+mat_prof:density_value a owl:DatatypeProperty ;
+    rdfs:label "density_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Density in g/cm³" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "pato:0001019" ;
+    mat_prof:sql_identifier "mat_specs_density" .
+
+mat_prof:duty_rate_value a owl:DatatypeProperty ;
+    rdfs:label "duty_rate_value" ;
+    rdfs:range xsd:float ;
+    skos:definition "Applied customs duty rate as percentage (e.g., 12.5)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:dutyRateValue" ;
+    mat_prof:sql_identifier "mat_import_duty_rate" .
+
+mat_prof:electrical_conductivity_value a owl:DatatypeProperty ;
+    rdfs:label "electrical_conductivity_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Electrical conductivity in S/m" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_electrical_conductivity" .
+
+mat_prof:entry_port_code_value a owl:DatatypeProperty ;
+    rdfs:label "entry_port_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{2}[A-Z0-9]{3}$" ] ) ] ) ] ;
+    skos:definition "UN/LOCODE port/airport code where goods entered (e.g., DEHAM, NLRTM)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:entryPortCodeValue" ;
+    mat_prof:sql_identifier "mat_import_entry_port" .
+
+mat_prof:eori_number_value a owl:DatatypeProperty ;
+    rdfs:label "eori_number_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{2}[A-Z0-9]{1,15}$" ] ) ] ) ] ;
+    skos:definition "EORI number - 2-letter country code followed by up to 15 alphanumeric characters" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:taxID" ;
+    mat_prof:sql_identifier "mat_import_eori" .
+
+mat_prof:exit_port_code_value a owl:DatatypeProperty ;
+    rdfs:label "exit_port_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{2}[A-Z0-9]{3}$" ] ) ] ) ] ;
+    skos:definition "UN/LOCODE port/airport code where goods exited (e.g., GBFXT, FRMRS)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:exitPortCodeValue" ;
+    mat_prof:sql_identifier "mat_import_exit_port" .
+
+mat_prof:expansion_coefficient_value a owl:DatatypeProperty ;
+    rdfs:label "expansion_coefficient_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Thermal expansion coefficient in ppm/K" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_expansion_coefficient" .
+
+mat_prof:extraction_harvest_date_value a owl:DatatypeProperty ;
+    rdfs:label "extraction_harvest_date_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}$" ] ) ] ) ] ;
+    skos:definition "Date of extraction or harvest (ISO 8601 format)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:dateCreated" ;
+    mat_prof:sql_identifier "mat_supplier_extraction_date" .
+
+mat_prof:facility_gln_value a owl:DatatypeProperty ;
+    rdfs:label "facility_gln_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[0-9]{13}$" ] ) ] ) ] ;
+    skos:definition "Facility GLN (Global Location Number) - 13-digit GS1 identifier for the processing facility" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "gs1:gln" ;
+    mat_prof:sql_identifier "mat_supplier_facility_gln" .
+
+mat_prof:facility_name_value a owl:DatatypeProperty ;
+    rdfs:label "facility_name_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Name of the processing facility" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:name" ;
+    mat_prof:sql_identifier "mat_supplier_facility_name" .
+
+mat_prof:facility_type_value a owl:DatatypeProperty ;
+    rdfs:label "facility_type_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(EXTRACTION|PROCESSING|RECYCLING|IMPORT)$" ] ) ] ) ] ;
+    skos:definition "Type of facility - EXTRACTION, PROCESSING, RECYCLING, IMPORT" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:facilityTypeValue" ;
+    mat_prof:sql_identifier "mat_supplier_facility_type" .
+
+mat_prof:fingerprint_isotope_ratios_value a owl:DatatypeProperty ;
+    rdfs:label "fingerprint_isotope_ratios_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Isotope ratio measurements for fingerprinting (e.g., δ13C, δ18O)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:fingerprintIsotopeRatiosValue" ;
+    mat_prof:sql_identifier "mat_specs_fingerprint_isotopes" .
+
+mat_prof:fingerprint_method_value a owl:DatatypeProperty ;
+    rdfs:label "fingerprint_method_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Analytical method used for fingerprinting" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "chmo:0000228" ;
+    mat_prof:sql_identifier "mat_specs_fingerprint_method" .
+
+mat_prof:fingerprint_spectroscopy_value a owl:DatatypeProperty ;
+    rdfs:label "fingerprint_spectroscopy_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Spectroscopy signatures (XRF, NMR, Raman) for fingerprinting" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:fingerprintSpectroscopyValue" ;
+    mat_prof:sql_identifier "mat_specs_fingerprint_spectroscopy" .
+
+mat_prof:flammability_value a owl:DatatypeProperty ;
+    rdfs:label "flammability_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Flammability classification (ASTM D92, etc.)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:flammabilityValue" ;
+    mat_prof:sql_identifier "mat_specs_flammability" .
+
+mat_prof:hardness_value a owl:DatatypeProperty ;
+    rdfs:label "hardness_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Hardness value (Vickers, Brinell, or Rockwell scale)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "pato:0000915" ;
+    mat_prof:sql_identifier "mat_specs_hardness" .
+
+mat_prof:import_license_number_value a owl:DatatypeProperty ;
+    rdfs:label "import_license_number_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Import license or permit number for restricted materials" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:identifier" ;
+    mat_prof:sql_identifier "mat_import_license_number" .
+
+mat_prof:inchi_value a owl:DatatypeProperty ;
+    rdfs:label "inchi_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "International Chemical Identifier (InChI) - structure-based identifier" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cheminf:000396" ;
+    mat_prof:sql_identifier "mat_identity_inchi" .
+
+mat_prof:inchikey_value a owl:DatatypeProperty ;
+    rdfs:label "inchikey_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{14}-[A-Z]{10}-[A-Z]$" ] ) ] ) ] ;
+    skos:definition "InChIKey - hashed InChI for database matching" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cheminf:000399" ;
+    mat_prof:sql_identifier "mat_identity_inchikey" .
+
+mat_prof:incoterms_value a owl:DatatypeProperty ;
+    rdfs:label "incoterms_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(EXW|FCA|FAS|FOB|CFR|CIF|CPT|CIP|DAT|DAP|DDP)$" ] ) ] ) ] ;
+    skos:definition "International commercial terms (e.g., FOB, CIF, EXW, DDP)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:incotermsValue" ;
+    mat_prof:sql_identifier "mat_import_incoterms" .
+
+mat_prof:jurisdiction_country_value a owl:DatatypeProperty ;
+    rdfs:label "jurisdiction_country_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z]{3}$" ] ) ] ) ] ;
+    skos:definition "Country of importer's legal establishment using EU Publications Office 3-character country codes" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "eu_country:jurisdictionCountry" ;
+    mat_prof:sql_identifier "mat_import_jurisdiction" .
+
+mat_prof:legal_name_value a owl:DatatypeProperty ;
+    rdfs:label "legal_name_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Legal name of the supplier organization" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:legalName" ;
+    mat_prof:sql_identifier "mat_supplier_legal_name" .
+
+mat_prof:lei_code_value a owl:DatatypeProperty ;
+    rdfs:label "lei_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[A-Z0-9]{18}[0-9]{2}$" ] ) ] ) ] ;
+    skos:definition "Legal Entity Identifier - 20-character ISO 17442 identifier" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:leiCode" ;
+    mat_prof:sql_identifier "mat_supplier_lei_code" .
+
+mat_prof:material_grade_value a owl:DatatypeProperty ;
+    rdfs:label "material_grade_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Material grade designation (e.g., pharmaceutical, food, technical, commercial)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:materialGradeValue" ;
+    mat_prof:sql_identifier "mat_identity_material_grade" .
+
+mat_prof:material_origin_location_value a owl:DatatypeProperty ;
+    rdfs:label "material_origin_location_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Geographic location of material source (mine, forest, recycling facility, synthesis plant)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:location" ;
+    mat_prof:sql_identifier "mat_supplier_origin_location" .
+
+mat_prof:material_source_type_value a owl:DatatypeProperty ;
+    rdfs:label "material_source_type_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(PRIMARY_EXTRACTION|RECYCLED|SYNTHESIZED|NATURAL_HARVEST)$" ] ) ] ) ] ;
+    skos:definition "Source of material: PRIMARY_EXTRACTION, RECYCLED, SYNTHESIZED, NATURAL_HARVEST" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:materialSourceTypeValue" ;
+    mat_prof:sql_identifier "mat_supplier_source_type" .
+
+mat_prof:melting_point_value a owl:DatatypeProperty ;
+    rdfs:label "melting_point_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Melting point in °C" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "pato:0000008" ;
+    mat_prof:sql_identifier "mat_specs_melting_point" .
+
+mat_prof:molecular_formula_value a owl:DatatypeProperty ;
+    rdfs:label "molecular_formula_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Chemical formula" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cheminf:000042" ;
+    mat_prof:sql_identifier "mat_identity_molecular_formula" .
+
+mat_prof:operation_date_value a owl:DatatypeProperty ;
+    rdfs:label "operation_date_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(Z|[+-]\\d{2}:\\d{2}))?$" ] ) ] ) ] ;
+    skos:definition "Date of the import/export operation (ISO 8601 format)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:dateCreated" ;
+    mat_prof:sql_identifier "mat_import_operation_date" .
+
+mat_prof:operation_quantities_value a owl:DatatypeProperty ;
+    rdfs:label "operation_quantities_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Quantities involved in the operation with units (e.g., 1000 kg, 500 pieces)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_import_quantities" .
+
+mat_prof:operation_type_value a owl:DatatypeProperty ;
+    rdfs:label "operation_type_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(IMPORT|EXPORT|TRANSIT|RE_EXPORT)$" ] ) ] ) ] ;
+    skos:definition "Type of import/export operation (IMPORT, EXPORT, TRANSIT, RE_EXPORT)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:operationTypeValue" ;
+    mat_prof:sql_identifier "mat_import_operation_type" .
+
+mat_prof:operation_value_amount_value a owl:DatatypeProperty ;
+    rdfs:label "operation_value_amount_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d+(\\.\\d{2})?\\s+[A-Z]{3}$" ] ) ] ) ] ;
+    skos:definition "Monetary value of the operation with currency code (e.g., 15000.00 EUR)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:price" ;
+    mat_prof:sql_identifier "mat_import_operation_value" .
+
+mat_prof:organization_gln_value a owl:DatatypeProperty ;
+    rdfs:label "organization_gln_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[0-9]{13}$" ] ) ] ) ] ;
+    skos:definition "Organization GLN (Global Location Number) - 13-digit GS1 identifier for the legal entity" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "gs1:gln" ;
+    mat_prof:sql_identifier "mat_supplier_org_gln" .
+
+mat_prof:osid_value a owl:DatatypeProperty ;
+    rdfs:label "osid_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Open Supply Hub ID for facility verification" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:osidValue" ;
+    mat_prof:sql_identifier "mat_supplier_osid" .
+
+mat_prof:parent_gln_value a owl:DatatypeProperty ;
+    rdfs:label "parent_gln_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[0-9]{13}$" ] ) ] ) ] ;
+    skos:definition "Parent organization GLN - links facility to parent organization" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "gs1:gln" ;
+    mat_prof:sql_identifier "mat_supplier_parent_gln" .
+
+mat_prof:particle_size_value a owl:DatatypeProperty ;
+    rdfs:label "particle_size_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Particle size in micrometers (μm) for powders/granules" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_particle_size" .
+
+mat_prof:permit_issuing_authority_value a owl:DatatypeProperty ;
+    rdfs:label "permit_issuing_authority_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Authority that issued the import permit or license" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:issuedBy" ;
+    mat_prof:sql_identifier "mat_import_permit_authority" .
+
+mat_prof:permit_type_value a owl:DatatypeProperty ;
+    rdfs:label "permit_type_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of import permit or license required" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:permitTypeValue" ;
+    mat_prof:sql_identifier "mat_import_permit_type" .
+
+mat_prof:permit_validity_period_value a owl:DatatypeProperty ;
+    rdfs:label "permit_validity_period_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}/\\d{4}-\\d{2}-\\d{2}$" ] ) ] ) ] ;
+    skos:definition "Permit validity period (start and end dates)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:permitValidityPeriodValue" ;
+    mat_prof:sql_identifier "mat_import_permit_validity" .
+
+mat_prof:primary_component_cas_value a owl:DatatypeProperty ;
+    rdfs:label "primary_component_cas_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{2,7}-\\d{2}-\\d$" ] ) ] ) ] ;
+    skos:definition "CAS number of primary component" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cas:registryNumber" ;
+    mat_prof:sql_identifier "mat_specs_primary_cas" .
+
+mat_prof:primary_component_name_value a owl:DatatypeProperty ;
+    rdfs:label "primary_component_name_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Name of primary component or substance" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "chebi:24431" ;
+    mat_prof:sql_identifier "mat_specs_primary_name" .
+
+mat_prof:processing_date_value a owl:DatatypeProperty ;
+    rdfs:label "processing_date_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{4}-\\d{2}-\\d{2}$" ] ) ] ) ] ;
+    skos:definition "Date of material extraction, processing, or import (ISO 8601 format: YYYY-MM-DD)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:processingDateValue" ;
+    mat_prof:sql_identifier "mat_identity_processing_date" .
+
+mat_prof:purity_percentage_value a owl:DatatypeProperty ;
+    rdfs:label "purity_percentage_value" ;
+    rdfs:range xsd:float ;
+    skos:definition "Measured purity percentage of primary component (e.g., 99.7)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_purity" .
+
+mat_prof:reactivity_value a owl:DatatypeProperty ;
+    rdfs:label "reactivity_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reactivity description (with air, water, acids, bases)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:reactivityValue" ;
+    mat_prof:sql_identifier "mat_specs_reactivity" .
+
+mat_prof:recycled_content_percentage_value a owl:DatatypeProperty ;
+    rdfs:label "recycled_content_percentage_value" ;
+    rdfs:range xsd:float ;
+    skos:definition "Percentage of recycled content (0-100)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_recycled_percentage" .
+
+mat_prof:recycled_cycle_number_value a owl:DatatypeProperty ;
+    rdfs:label "recycled_cycle_number_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Recycling cycle number (e.g., 1st cycle, 2nd cycle, 3rd cycle)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:recycledCycleNumberValue" ;
+    mat_prof:sql_identifier "mat_specs_recycled_cycle" .
+
+mat_prof:recycled_source_value a owl:DatatypeProperty ;
+    rdfs:label "recycled_source_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(post-consumer|post-industrial)$" ] ) ] ) ] ;
+    skos:definition "Source of recycled material: post-consumer, post-industrial" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:recycledSourceValue" ;
+    mat_prof:sql_identifier "mat_specs_recycled_source" .
+
+mat_prof:refractive_index_value a owl:DatatypeProperty ;
+    rdfs:label "refractive_index_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Refractive index" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_refractive_index" .
+
+mat_prof:resistivity_value a owl:DatatypeProperty ;
+    rdfs:label "resistivity_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Electrical resistivity in Ω·m" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_resistivity" .
+
+mat_prof:shipment_transaction_id_value a owl:DatatypeProperty ;
+    rdfs:label "shipment_transaction_id_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Unique identifier for the shipment or transaction" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:identifier" ;
+    mat_prof:sql_identifier "mat_import_shipment_id" .
+
+mat_prof:smiles_value a owl:DatatypeProperty ;
+    rdfs:label "smiles_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "SMILES (Simplified Molecular-Input Line-Entry System) - molecular structure string" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "cheminf:000018" ;
+    mat_prof:sql_identifier "mat_identity_smiles" .
+
+mat_prof:solubility_value a owl:DatatypeProperty ;
+    rdfs:label "solubility_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Solubility description (in specified solvents)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:solubilityValue" ;
+    mat_prof:sql_identifier "mat_specs_solubility" .
+
+mat_prof:specification_code_value a owl:DatatypeProperty ;
+    rdfs:label "specification_code_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "ISO/EN/ASTM specification code for technical materials" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:materialExtent" ;
+    mat_prof:sql_identifier "mat_identity_specification_code" .
+
+mat_prof:state_value a owl:DatatypeProperty ;
+    rdfs:label "state_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^(solid|liquid|gas|paste)$" ] ) ] ) ] ;
+    skos:definition "Physical state: solid, liquid, gas, paste" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "pato:0001025" ;
+    mat_prof:sql_identifier "mat_specs_state" .
+
+mat_prof:supplier_material_code_value a owl:DatatypeProperty ;
+    rdfs:label "supplier_material_code_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Supplier-specific material code or SKU" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:supplierMaterialCodeValue" ;
+    mat_prof:sql_identifier "mat_identity_supplier_code" .
+
+mat_prof:taric_code_value a owl:DatatypeProperty ;
+    rdfs:label "taric_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^[0-9]{10}$" ] ) ] ) ] ;
+    skos:definition "10-digit TARIC (Integrated Tariff of European Communities) code" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:taricCodeValue" ;
+    mat_prof:sql_identifier "mat_import_taric_code" .
+
+mat_prof:tariff_description_value a owl:DatatypeProperty ;
+    rdfs:label "tariff_description_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Human-readable description of the tariff classification" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:description" ;
+    mat_prof:sql_identifier "mat_import_tariff_description" .
+
+mat_prof:tensile_strength_value a owl:DatatypeProperty ;
+    rdfs:label "tensile_strength_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Tensile strength in MPa" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "emmo:EMMO_6b24a43e_5a96_4e3c_9a6e_d6d1e6c0b0a0" ;
+    mat_prof:sql_identifier "mat_specs_tensile_strength" .
+
+mat_prof:test_atmospheric_pressure_value a owl:DatatypeProperty ;
+    rdfs:label "test_atmospheric_pressure_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Atmospheric pressure during testing (Pa)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_test_pressure" .
+
+mat_prof:test_reference_humidity_value a owl:DatatypeProperty ;
+    rdfs:label "test_reference_humidity_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference humidity for testing (%)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_test_humidity" .
+
+mat_prof:test_reference_temperature_value a owl:DatatypeProperty ;
+    rdfs:label "test_reference_temperature_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference temperature for testing (°C)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_test_temperature" .
+
+mat_prof:test_standard_value a owl:DatatypeProperty ;
+    rdfs:label "test_standard_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Testing standard applied (ISO, ASTM, EN)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:testStandardValue" ;
+    mat_prof:sql_identifier "mat_specs_test_standard" .
+
+mat_prof:thermal_conductivity_value a owl:DatatypeProperty ;
+    rdfs:label "thermal_conductivity_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Thermal conductivity in W/m·K" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "emmo:EMMO_c5ddfdce_c595_47a5_aea0_3b123b5e10dd" ;
+    mat_prof:sql_identifier "mat_specs_thermal_conductivity" .
+
+mat_prof:trace_element_max_concentration_value a owl:DatatypeProperty ;
+    rdfs:label "trace_element_max_concentration_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Maximum allowable concentration of trace element (e.g., 10 ppm, 5 ppt)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_trace_max_concentration" .
+
+mat_prof:trace_element_name_value a owl:DatatypeProperty ;
+    rdfs:label "trace_element_name_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Name of trace element" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "chebi:24431" ;
+    mat_prof:sql_identifier "mat_specs_trace_name" .
+
+mat_prof:unique_material_identifier_value a owl:DatatypeProperty ;
+    rdfs:label "unique_material_identifier_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Composite unique identifier: [TYPE]:[VALUE]:[BATCH] (e.g., CAS:7732-18-5:BATCH-2024-001)" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:uniqueMaterialIdentifierValue" ;
+    mat_prof:sql_identifier "mat_identity_unique_id" .
+
+mat_prof:unspsc_code_value a owl:DatatypeProperty ;
+    rdfs:label "unspsc_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{8}$" ] ) ] ) ] ;
+    skos:definition "UNSPSC (United Nations Standard Products and Services Code) - 8-digit commodity classification" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "unspsc:code" ;
+    mat_prof:sql_identifier "mat_identity_unspsc_code" .
+
+mat_prof:vat_number_value a owl:DatatypeProperty ;
+    rdfs:label "vat_number_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "VAT registration number" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "schema:vatID" ;
+    mat_prof:sql_identifier "mat_supplier_vat_number" .
+
+mat_prof:young_modulus_value a owl:DatatypeProperty ;
+    rdfs:label "young_modulus_value" ;
+    rdfs:range xsd:string ;
+    skos:definition "Young's modulus in GPa" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "qudt:quantityValue" ;
+    mat_prof:sql_identifier "mat_specs_young_modulus" .
+
+mat_prof:MaterialIdentification a owl:Class ;
+    rdfs:label "MaterialIdentification" ;
+    skos:definition "Root class for material identification information" ;
+    skos:exactMatch mat_prof:materialIdentification ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_prof_root" .
+
+mat_prof:hs_code_value a owl:DatatypeProperty ;
+    rdfs:label "hs_code_value" ;
+    rdfs:range [ a rdfs:Datatype ;
+            owl:intersectionOf ( xsd:string [ a rdfs:Datatype ;
+                        owl:onDatatype xsd:string ;
+                        owl:withRestrictions ( [ xsd:pattern "^\\d{6}$" ] ) ] ) ] ;
+    skos:definition "Harmonized System code - 6-digit for international trade commodities" ;
+    skos:inScheme mat_prof: ;
+    mat_prof:owl.filler "mat_prof:hsCodeValue" ;
+    mat_prof:sql_identifier "mat_identity_hs_code" .
+
+mat_prof:InformationRelatedToImportExport a owl:Class ;
+    rdfs:label "InformationRelatedToImportExport" ;
+    rdfs:subClassOf mat_prof:MaterialIdentification ;
+    skos:definition "Information related to material import/export operations and customs compliance" ;
+    skos:exactMatch mat_prof:informationRelatedToImportExport ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_import" .
+
+mat_prof:MaterialIdentity a owl:Class ;
+    rdfs:label "MaterialIdentity" ;
+    rdfs:subClassOf mat_prof:MaterialIdentification ;
+    skos:definition "Material identity with chemical identifiers and batch traceability" ;
+    skos:exactMatch mat_prof:materialIdentity ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_identity" .
+
+mat_prof:MaterialSpecifications a owl:Class ;
+    rdfs:label "MaterialSpecifications" ;
+    rdfs:subClassOf mat_prof:MaterialIdentification ;
+    skos:definition "Material composition and technical properties" ;
+    skos:exactMatch mat_prof:materialSpecifications ;
+    skos:inScheme mat_prof: ;
+    mat_prof:sql_identifier "mat_specs" .
+
+

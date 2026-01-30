@@ -1,0 +1,685 @@
+@prefix mat_prof: <https://ce-rise-models.codeberg.page/material-profile/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mat_prof:aeoStatus a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Authorized Economic Operator certification for trusted trader status" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:aeo_type_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:aeo_validity_date_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:aeo_certificate_number_value ] ;
+    sh:targetClass mat_prof:aeoStatus .
+
+mat_prof:batchTraceability a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Batch/lot number and processing date for material traceability" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:processing_date_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:batch_number_value ] ;
+    sh:targetClass mat_prof:batchTraceability .
+
+mat_prof:borderCrossing a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Border crossing and customs clearance location information" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:border_crossing_date_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:exit_port_code_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:entry_port_code_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:customs_office_code_value ] ;
+    sh:targetClass mat_prof:borderCrossing .
+
+mat_prof:chemicalIdentifier a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Chemical identifiers: CAS, InChI, InChIKey, SMILES" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:smiles_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:cas_registry_number_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:inchi_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:inchikey_value ] ;
+    sh:targetClass mat_prof:chemicalIdentifier .
+
+mat_prof:chemicalProperties a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Chemical properties: reactivity, corrosion resistance, solubility, flammability" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:solubility_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:flammability_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:corrosion_resistance_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:reactivity_value ] ;
+    sh:targetClass mat_prof:chemicalProperties .
+
+mat_prof:commodityCode a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "UNSPSC or HS code for commodity materials" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:hs_code_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:unspsc_code_value ] ;
+    sh:targetClass mat_prof:commodityCode .
+
+mat_prof:composition a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Material composition with purity, additives, and trace elements" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path mat_prof:composition_certification_authority_value ],
+        [ sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path mat_prof:recycled_content_percentage_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path mat_prof:trace_element_max_concentration_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:primary_component_name_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path mat_prof:additive_cas_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path mat_prof:additive_function_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:primary_component_cas_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path mat_prof:additive_concentration_value ],
+        [ sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:purity_percentage_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path mat_prof:composition_test_method_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path mat_prof:trace_element_name_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:additive_name_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 13 ;
+            sh:path mat_prof:recycled_cycle_number_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 14 ;
+            sh:path mat_prof:recycled_source_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path mat_prof:composition_test_date_value ] ;
+    sh:targetClass mat_prof:composition .
+
+mat_prof:customsDocumentation a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Customs documents linked to import operations for verification and traceability" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:customs_document_id_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:customs_document_urls_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:customs_document_type_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:customs_issuing_authority_value ] ;
+    sh:targetClass mat_prof:customsDocumentation .
+
+mat_prof:electricalProperties a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Electrical properties: conductivity, resistivity" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:electrical_conductivity_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:resistivity_value ] ;
+    sh:targetClass mat_prof:electricalProperties .
+
+mat_prof:eoriNumber a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "EORI number - European Union registration and identification number for import/export businesses" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:eori_number_value ] ;
+    sh:targetClass mat_prof:eoriNumber .
+
+mat_prof:fingerprinting a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Fingerprinting methods: isotope ratios, spectroscopy signatures" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:fingerprint_isotope_ratios_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:fingerprint_method_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:fingerprint_spectroscopy_value ] ;
+    sh:targetClass mat_prof:fingerprinting .
+
+mat_prof:importAuthorization a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Import licenses and permits required for restricted materials" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:permit_issuing_authority_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:permit_type_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:import_license_number_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:permit_validity_period_value ] ;
+    sh:targetClass mat_prof:importAuthorization .
+
+mat_prof:importExportOperation a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Individual import or export operation providing activity history" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:operation_quantities_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:operation_date_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path mat_prof:operation_value_amount_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:shipment_transaction_id_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path mat_prof:incoterms_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:operation_type_value ] ;
+    sh:targetClass mat_prof:importExportOperation .
+
+mat_prof:importerJurisdiction a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Legal jurisdiction of importer's establishment" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:jurisdiction_country_value ] ;
+    sh:targetClass mat_prof:importerJurisdiction .
+
+mat_prof:informationRelatedToImportExport a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Information related to material import/export operations and customs compliance" ;
+    sh:ignoredProperties ( mat_prof:incoterms_value mat_prof:operation_type_value mat_prof:customs_issuing_authority_value mat_prof:customs_document_urls_value mat_prof:border_crossing_date_value mat_prof:aeo_type_value mat_prof:shipment_transaction_id_value mat_prof:eori_number_value mat_prof:jurisdiction_country_value mat_prof:taric_code_value mat_prof:operation_date_value mat_prof:customs_document_id_value mat_prof:permit_issuing_authority_value mat_prof:operation_value_amount_value mat_prof:operation_quantities_value mat_prof:entry_port_code_value mat_prof:exit_port_code_value mat_prof:cn_code_value rdf:type mat_prof:permit_validity_period_value mat_prof:customs_office_code_value mat_prof:aeo_validity_date_value mat_prof:customs_document_type_value mat_prof:permit_type_value mat_prof:tariff_description_value mat_prof:aeo_certificate_number_value mat_prof:import_license_number_value mat_prof:hs_code_value mat_prof:duty_rate_value ) ;
+    sh:targetClass mat_prof:informationRelatedToImportExport .
+
+mat_prof:materialGrade a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Material grade designation" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:material_grade_value ] ;
+    sh:targetClass mat_prof:materialGrade .
+
+mat_prof:materialIdentification a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Root class for material identification information" ;
+    sh:ignoredProperties ( mat_prof:batch_number_value mat_prof:additive_function_value mat_prof:coordinates_value mat_prof:material_origin_location_value mat_prof:hardness_value mat_prof:customs_document_urls_value mat_prof:processing_date_value mat_prof:specification_code_value mat_prof:permit_issuing_authority_value mat_prof:composition_test_date_value mat_prof:flammability_value mat_prof:unique_material_identifier_value mat_prof:operation_quantities_value mat_prof:cn_code_value mat_prof:legal_name_value mat_prof:permit_validity_period_value mat_prof:expansion_coefficient_value mat_prof:trace_element_max_concentration_value mat_prof:recycled_source_value mat_prof:corrosion_resistance_value mat_prof:customs_document_type_value mat_prof:trace_element_name_value mat_prof:primary_component_name_value mat_prof:additive_concentration_value mat_prof:extraction_harvest_date_value mat_prof:incoterms_value mat_prof:facility_name_value mat_prof:unspsc_code_value mat_prof:chemical_name_value mat_prof:color_value mat_prof:eori_number_value mat_prof:state_value mat_prof:operation_value_amount_value mat_prof:cas_registry_number_value mat_prof:exit_port_code_value mat_prof:tensile_strength_value rdf:type mat_prof:material_source_type_value mat_prof:fingerprint_method_value mat_prof:recycled_content_percentage_value mat_prof:permit_type_value mat_prof:refractive_index_value mat_prof:lei_code_value mat_prof:operation_type_value mat_prof:facility_type_value mat_prof:customs_issuing_authority_value mat_prof:test_atmospheric_pressure_value mat_prof:aeo_type_value mat_prof:purity_percentage_value mat_prof:additive_cas_value mat_prof:organization_gln_value mat_prof:shipment_transaction_id_value mat_prof:young_modulus_value mat_prof:operation_date_value mat_prof:facility_gln_value mat_prof:test_reference_temperature_value mat_prof:composition_test_method_value mat_prof:particle_size_value mat_prof:customs_office_code_value mat_prof:primary_component_cas_value mat_prof:country_of_incorporation_value mat_prof:aeo_validity_date_value mat_prof:test_standard_value mat_prof:aeo_certificate_number_value mat_prof:import_license_number_value mat_prof:company_registration_value mat_prof:duty_rate_value mat_prof:reactivity_value mat_prof:solubility_value mat_prof:electrical_conductivity_value mat_prof:composition_certification_authority_value mat_prof:recycled_cycle_number_value mat_prof:melting_point_value mat_prof:inchi_value mat_prof:border_crossing_date_value mat_prof:material_grade_value mat_prof:supplier_material_code_value mat_prof:jurisdiction_country_value mat_prof:customs_document_id_value mat_prof:inchikey_value mat_prof:osid_value mat_prof:entry_port_code_value mat_prof:fingerprint_isotope_ratios_value mat_prof:additive_name_value mat_prof:parent_gln_value mat_prof:fingerprint_spectroscopy_value mat_prof:smiles_value mat_prof:vat_number_value mat_prof:molecular_formula_value mat_prof:test_reference_humidity_value mat_prof:taric_code_value mat_prof:tariff_description_value mat_prof:resistivity_value mat_prof:density_value mat_prof:hs_code_value mat_prof:thermal_conductivity_value ) ;
+    sh:targetClass mat_prof:materialIdentification .
+
+mat_prof:materialIdentity a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Material identity with chemical identifiers and batch traceability" ;
+    sh:ignoredProperties ( mat_prof:inchikey_value mat_prof:batch_number_value mat_prof:unique_material_identifier_value mat_prof:inchi_value mat_prof:cas_registry_number_value rdf:type mat_prof:smiles_value mat_prof:unspsc_code_value mat_prof:material_grade_value mat_prof:molecular_formula_value mat_prof:supplier_material_code_value mat_prof:chemical_name_value mat_prof:processing_date_value mat_prof:specification_code_value mat_prof:hs_code_value ) ;
+    sh:targetClass mat_prof:materialIdentity .
+
+mat_prof:materialName a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Chemical or material name and molecular formula" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:molecular_formula_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:chemical_name_value ] ;
+    sh:targetClass mat_prof:materialName .
+
+mat_prof:materialOrigin a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Material source location and extraction/harvest information" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:material_source_type_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:material_origin_location_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:extraction_harvest_date_value ] ;
+    sh:targetClass mat_prof:materialOrigin .
+
+mat_prof:materialSpecifications a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Material composition and technical properties" ;
+    sh:ignoredProperties ( mat_prof:refractive_index_value mat_prof:additive_function_value mat_prof:hardness_value mat_prof:test_atmospheric_pressure_value mat_prof:purity_percentage_value mat_prof:additive_cas_value mat_prof:young_modulus_value mat_prof:composition_test_date_value mat_prof:flammability_value mat_prof:test_reference_temperature_value mat_prof:composition_test_method_value mat_prof:particle_size_value mat_prof:expansion_coefficient_value mat_prof:primary_component_cas_value mat_prof:trace_element_max_concentration_value mat_prof:recycled_source_value mat_prof:corrosion_resistance_value mat_prof:primary_component_name_value mat_prof:trace_element_name_value mat_prof:additive_concentration_value mat_prof:test_standard_value mat_prof:solubility_value mat_prof:reactivity_value mat_prof:electrical_conductivity_value mat_prof:composition_certification_authority_value mat_prof:recycled_cycle_number_value mat_prof:melting_point_value mat_prof:color_value mat_prof:state_value mat_prof:fingerprint_isotope_ratios_value mat_prof:tensile_strength_value mat_prof:additive_name_value mat_prof:fingerprint_spectroscopy_value rdf:type mat_prof:fingerprint_method_value mat_prof:test_reference_humidity_value mat_prof:recycled_content_percentage_value mat_prof:resistivity_value mat_prof:density_value mat_prof:thermal_conductivity_value ) ;
+    sh:targetClass mat_prof:materialSpecifications .
+
+mat_prof:mechanicalProperties a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Mechanical properties: tensile strength, hardness, Young's modulus" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:young_modulus_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:tensile_strength_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:hardness_value ] ;
+    sh:targetClass mat_prof:mechanicalProperties .
+
+mat_prof:opticalProperties a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Optical properties: refractive index" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:refractive_index_value ] ;
+    sh:targetClass mat_prof:opticalProperties .
+
+mat_prof:organizationEntity a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Supplier legal entity information with GS1 GLN as preferred identifier" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:legal_name_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:organization_gln_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:lei_code_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:vat_number_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path mat_prof:country_of_incorporation_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path mat_prof:company_registration_value ] ;
+    sh:targetClass mat_prof:organizationEntity .
+
+mat_prof:physicalProperties a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Physical properties: density, color, state, particle size" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:color_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:state_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:particle_size_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:density_value ] ;
+    sh:targetClass mat_prof:physicalProperties .
+
+mat_prof:processingFacility a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Physical processing facility with GS1 GLN and hierarchical linking" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path mat_prof:facility_type_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:facility_gln_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:osid_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path mat_prof:coordinates_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:facility_name_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:parent_gln_value ] ;
+    sh:targetClass mat_prof:processingFacility .
+
+mat_prof:specificationCode a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "ISO/EN/ASTM specification code for technical materials" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:specification_code_value ] ;
+    sh:targetClass mat_prof:specificationCode .
+
+mat_prof:supplierInformation a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Information about the material supplier and processing facility" ;
+    sh:ignoredProperties ( mat_prof:osid_value mat_prof:facility_type_value mat_prof:coordinates_value mat_prof:material_origin_location_value mat_prof:parent_gln_value mat_prof:material_source_type_value mat_prof:legal_name_value mat_prof:facility_name_value mat_prof:vat_number_value rdf:type mat_prof:country_of_incorporation_value mat_prof:organization_gln_value mat_prof:extraction_harvest_date_value mat_prof:lei_code_value mat_prof:company_registration_value mat_prof:facility_gln_value ) ;
+    sh:targetClass mat_prof:supplierInformation .
+
+mat_prof:supplierMaterialCode a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Supplier-specific material code or SKU" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:supplier_material_code_value ] ;
+    sh:targetClass mat_prof:supplierMaterialCode .
+
+mat_prof:tariffClassification a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Customs tariff classification codes for proper duty calculation and trade statistics" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:tariff_description_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:hs_code_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:cn_code_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:taric_code_value ],
+        [ sh:datatype xsd:float ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path mat_prof:duty_rate_value ] ;
+    sh:targetClass mat_prof:tariffClassification .
+
+mat_prof:testConditions a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Reference test conditions for all property measurements" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:test_atmospheric_pressure_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path mat_prof:test_standard_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:test_reference_humidity_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:test_reference_temperature_value ] ;
+    sh:targetClass mat_prof:testConditions .
+
+mat_prof:thermalProperties a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Thermal properties: melting point, thermal conductivity, expansion coefficient" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mat_prof:expansion_coefficient_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path mat_prof:thermal_conductivity_value ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:melting_point_value ] ;
+    sh:targetClass mat_prof:thermalProperties .
+
+mat_prof:uniqueMaterialIdentifier a sh:NodeShape ;
+    sh:closed true ;
+    sh:description "Composite unique identifier enabling web link to material passport" ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mat_prof:unique_material_identifier_value ] ;
+    sh:targetClass mat_prof:uniqueMaterialIdentifier .
+
+
