@@ -1,6 +1,6 @@
 # CE-RISE Material Profile
 
-[![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED) [![Schemas](https://img.shields.io/badge/Schema%20Files-LinkML%2C%20JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/material-profile/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18432618.svg)](https://doi.org/10.5281/zenodo.18432618) [![Schemas](https://img.shields.io/badge/Schema%20Files-LinkML%2C%20JSON%2C%20SHACL%2C%20OWL-32CD32)](https://ce-rise-models.codeberg.page/material-profile/)
 
 
 This repository provides the core data model defining the mandatory Material Profile for any Digital Material Passport, including material attributes, identity, composition, origin, and compliance information that defines "what the material is when introduced" rather than "what happens to it over time."
