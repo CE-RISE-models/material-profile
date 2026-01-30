@@ -20,7 +20,7 @@ prefixes:
     cheminf: http://semanticscience.org/resource/CHEMINF_
     qudt: http://qudt.org/schema/qudt/
     unit: http://qudt.org/vocab/unit/
-    schema: https://schema.org/
+    schema: http://schema.org/
     bao: http://www.bioassayontology.org/bao#
     obi: http://purl.obolibrary.org/obo/OBI_
     emmo: https://w3id.org/emmo#
