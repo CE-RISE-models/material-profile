@@ -219,7 +219,7 @@ Funded by the European Union under Grant Agreement No. 101092281 — CE-RISE.
 Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union or the granting authority (HADEA).  
 Neither the European Union nor the granting authority can be held responsible for them.
 
-© 2025 CE-RISE consortium.  
+© 2026 CE-RISE consortium.  
 Licensed under [Creative Commons Attribution–NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).  
 Attribution: CE-RISE project (Grant Agreement No. 101092281) and the individual authors/partners as indicated.
 
