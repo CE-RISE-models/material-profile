@@ -135,6 +135,8 @@ Material composition and technical properties with test conditions:
 - **Fingerprinting**: Isotope ratios, spectroscopy signatures (XRF, NMR, Raman), trace element profiles, analytical method used
 - **TestConditions**: Reference temperature, humidity, pressure, testing standard applied, test date (critical for all property measurements)
 
+Material specifications may optionally embed CE-RISE utility model records for uncertainty statements, metrological traceability statements, and data quality assessments. These fields are optional and do not change the minimum information needed to describe a material profile.
+
 ### Data Properties
 
 Each class has a corresponding value property (e.g., `cas_registry_number_value`, `batch_number_value`) that holds the actual data. All value properties are string type except where specified otherwise (e.g., float for purity percentages).

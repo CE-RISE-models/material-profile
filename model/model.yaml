@@ -5,7 +5,7 @@ description: >
     Core data model defining the mandatory Material Profile for Digital Material Passports,
     including material identity, chemical composition, supplier details, and technical specifications.
 license: CC BY-NC 4.0
-version: 0.0.1
+version: 0.1.0
 
 prefixes:
     linkml: https://w3id.org/linkml/
@@ -26,12 +26,18 @@ prefixes:
     emmo: https://w3id.org/emmo#
     pato: http://purl.obolibrary.org/obo/PATO_
     chmo: http://purl.obolibrary.org/obo/CHMO_
+    uq: https://ce-rise-models.codeberg.page/uncertainty-quantification/
+    mt: https://ce-rise-models.codeberg.page/metrological-traceability/
+    dqf: https://ce-rise-models.codeberg.page/data-quality-framework/
 
 default_prefix: mat_prof
 default_range: string
 
 imports:
     - linkml:types
+    - https://codeberg.org/CE-RISE-models/uncertainty-quantification/raw/tag/pages-v0.0.2/generated/schema
+    - https://codeberg.org/CE-RISE-models/metrological-traceability/raw/tag/pages-v0.0.2/generated/schema
+    - https://codeberg.org/CE-RISE-models/data-quality-framework/raw/tag/pages-v0.0.2/generated/schema
 
 slots:
     # Step 1: Material Identity slots
@@ -1193,6 +1199,37 @@ classes:
         is_a: MaterialIdentification
         class_uri: mat_prof:materialSpecifications
         description: "Material composition and technical properties"
+        attributes:
+            uncertainty_statements:
+                description: "Optional uncertainty statements for measured, calculated, or reported material specification values"
+                range: UncertaintyStatement
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    owl.filler: uq:uncertaintyStatement
+                    sql_identifier: "mat_specs_uncertainty_statements"
+            traceability_statements:
+                description: "Optional metrological traceability statements for material tests, methods, standards, calibrations, reference materials, or boundary definitions"
+                range: TraceabilityStatement
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    owl.filler: mt:traceabilityStatement
+                    sql_identifier: "mat_specs_traceability_statements"
+            data_quality_assessments:
+                description: "Optional data quality assessments for material specification values, evidence, provenance, representativeness, completeness, or pedigree"
+                range: DataQualityAssessment
+                multivalued: true
+                inlined: true
+                inlined_as_list: true
+                required: false
+                annotations:
+                    owl.filler: dqf:dataQualityAssessment
+                    sql_identifier: "mat_specs_data_quality_assessments"
         annotations:
             sql_identifier: "mat_specs"
 

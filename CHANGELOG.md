@@ -1,10 +1,14 @@
 # Changelog
 
-All notable changes to the CE-RISE RE-XXX Data Model will be documented in this file.
+All notable changes to the CE-RISE Material Profile Data Model will be documented in this file.
 
-## [0.0.1] - unreleased
+## [0.1.0] - 2026-05-12
 
 ### Added
-- Initial project structure and repository setup from template: https://ce-rise-models.codeberg.page/template-data-model/
-- Initial data model structure for XXXX
-- Artifacts built and deployed to pages
+- Optional `MaterialSpecifications` links to the CE-RISE uncertainty quantification, metrological traceability, and data quality framework utility models.
+
+## [0.0.1] - 2026-05-11
+
+### Added
+- Initial LinkML model structure for material identity, supplier information, import/export information, and material specifications.
+- Repository metadata and generated schema artifacts for Codeberg Pages.
