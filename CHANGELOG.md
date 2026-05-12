@@ -7,7 +7,7 @@ All notable changes to the CE-RISE Material Profile Data Model will be documente
 ### Added
 - Optional `MaterialSpecifications` links to the CE-RISE uncertainty quantification, metrological traceability, and data quality framework utility models.
 
-## [0.0.1] - 2026-05-11
+## [0.0.1] - 2026-01-30
 
 ### Added
 - Initial LinkML model structure for material identity, supplier information, import/export information, and material specifications.
