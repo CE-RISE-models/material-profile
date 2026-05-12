@@ -35,9 +35,9 @@ default_range: string
 
 imports:
     - linkml:types
-    - https://codeberg.org/CE-RISE-models/uncertainty-quantification/raw/tag/pages-v0.0.2/generated/schema
-    - https://codeberg.org/CE-RISE-models/metrological-traceability/raw/tag/pages-v0.0.2/generated/schema
-    - https://codeberg.org/CE-RISE-models/data-quality-framework/raw/tag/pages-v0.0.2/generated/schema
+    - https://codeberg.org/CE-RISE-models/uncertainty-quantification/raw/tag/pages-v0.0.3/generated/schema
+    - https://codeberg.org/CE-RISE-models/metrological-traceability/raw/tag/pages-v0.0.3/generated/schema
+    - https://codeberg.org/CE-RISE-models/data-quality-framework/raw/tag/pages-v0.0.3/generated/schema
 
 slots:
     # Step 1: Material Identity slots
