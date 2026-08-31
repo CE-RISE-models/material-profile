@@ -5,7 +5,7 @@ description: >
     Core data model defining the mandatory Material Profile for Digital Material Passports,
     including material identity, chemical composition, supplier details, and technical specifications.
 license: CC BY-NC 4.0
-version: 0.1.0
+version: 0.1.1
 
 prefixes:
     linkml: https://w3id.org/linkml/
