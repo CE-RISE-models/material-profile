@@ -584,6 +584,14 @@ slots:
             owl.filler: pato:0001019
             sql_identifier: "mat_specs_density"
 
+    bulk_density_value:
+        description: "Bulk density in g/cm³"
+        range: string
+        annotations:
+            owl.filler: pato:0001019
+            sql_identifier: "mat_specs_bulk_density"
+            references: "IUPAC Gold Book: bulk density"
+
     color_value:
         description: "Color description or hex code"
         range: string
@@ -843,7 +851,7 @@ classes:
                 range: string
                 required: false
         annotations:
-            sql_identifier: "mat_identity_supplier_code"
+            sql_identifier: "mat_identity_supplier_material_code"
 
     BatchTraceability:
         is_a: MaterialIdentity
@@ -907,7 +915,7 @@ classes:
                 range: string
                 required: true
         annotations:
-            sql_identifier: "mat_identity_unique_id"
+            sql_identifier: "mat_identity_unique_material_identifier"
 
     # Step 2: Supplier Information
     SupplierInformation:
@@ -1025,7 +1033,7 @@ classes:
                 range: string
                 required: false
         annotations:
-            sql_identifier: "mat_import_eori"
+            sql_identifier: "mat_import_eori_number"
 
     CustomsDocumentation:
         is_a: InformationRelatedToImportExport
@@ -1094,7 +1102,7 @@ classes:
                 range: string
                 required: false
         annotations:
-            sql_identifier: "mat_import_jurisdiction"
+            sql_identifier: "mat_import_importer_jurisdiction"
 
     TariffClassification:
         is_a: InformationRelatedToImportExport
@@ -1295,9 +1303,12 @@ classes:
     PhysicalProperties:
         is_a: MaterialSpecifications
         class_uri: mat_prof:physicalProperties
-        description: "Physical properties: density, color, state, particle size"
+        description: "Physical properties: density, bulk density, color, state, particle size"
         attributes:
             density_value:
+                range: string
+                required: false
+            bulk_density_value:
                 range: string
                 required: false
             color_value:
